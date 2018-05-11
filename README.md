@@ -5,15 +5,9 @@ This project aims to analyse and visualise the data generated from [the project]
 
 Once done, we should look at data from the [official monitoring equipment](http://www.scottishairquality.co.uk/latest/site-info.php?site_id=ABD0&view=latest).
 
-------- -----------
-             
-    
-   
-------- -----------
-
 | Sensor  | Medavi_ID | Luftdaten_ID |
-| :------ |:----------| : -----|
-| one     | 3654427   | 5331 |
-| two     | tbc          | 7789|
-| three   | 12017738  | 8554 |
-| four    | 3654335   | 8733 |
+| :------ |:----------| : ---------- |
+| one     | 3654427   | 5331         |
+| two     | tbc       | 7789         |
+| three   | 12017738  | 8554         |
+| four    | 3654335   | 8733         |
