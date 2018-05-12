@@ -9,7 +9,7 @@ Once done, we should look at data from the [official monitoring equipment](http:
 | Sensor  | Madavi_ID | Luftdaten_ID | Loc_lat| Loc_long|
 | :------ |:----------| :---------- |:--------|:--------|
 | one     | 3654427   | 5331         |57.138  |-2.077   |
-| two     | tbc       | 7789         |57.130  |-2.087   |
+| two     | **tbc**   | 7789         |57.130  |-2.087   |
 | three   | 12017738  | 8554         |57.146  |-2.114   |
 | four    | 3654335   | 8733         |57.136  |-2.107   |
 
