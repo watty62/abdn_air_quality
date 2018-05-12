@@ -5,13 +5,14 @@ This project aims to analyse and visualise the data generated from [the project]
 
 Once done, we should look at data from the [official monitoring equipment](http://www.scottishairquality.co.uk/latest/site-info.php?site_id=ABD0&view=latest).
 
+These are the community sensors:  
 
-| Sensor  | Madavi_ID | Luftdaten_ID | Loc_lat| Loc_long|
-| :------ |:----------| :---------- |:--------|:--------|
-| one     | 3654427   | 5331         |57.138  |-2.077   |
-| two     | **tbc**   | 7789         |57.130  |-2.087   |
-| three   | 12017738  | 8554         |57.146  |-2.114   |
-| four    | 3654335   | 8733         |57.136  |-2.107   |
+| Luftdaten_ID | Madavi_ID |latitude| longitude|
+| :------ |:----------|:--------|:--------|
+| 5331    | 3654427   |57.138  |-2.077   |
+| 7789    | **tbc**   |57.130  |-2.087   |
+| 8554    | 12017738  |57.146  |-2.114   |
+| 8733    | 3654335   |57.136  |-2.107   |
 
 
 
