@@ -33,6 +33,10 @@ The Madavi URLs are in the format: https://www.madavi.de/sensor/csvfiles.php?sen
 
 This links to a page of data CSVs for the current month and Zip files for past months.  
 
+**Update 13-May-2018** The *get_madavi.py* now retrieves 73 CSV files from the Madavi site to 12-May-2018. These are the current month CSVs. *Next* to grab the zips for previous files, download and extract these. 
+
+There is an issue with the Madavi data in that the header has two fewer columns than it has data. It is not yet clear if the header is missing attribute names, or the data contains superfluous columns. 
+
 
 
 ## To be done
