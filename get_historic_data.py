@@ -4,11 +4,12 @@ from dateutil import rrule, parser
 import os
 
 start_date = '2017-10-01'
-end_date = '2018-05-10'
+end_date = '2018-05-12'
 
 date_list = list(rrule.rrule(rrule.DAILY, dtstart=parser.parse(start_date), until=parser.parse(end_date)))
 
-sensor_ids = ["5331", "7889", "8544", "8733"]
+#sensor_ids = ["5331", "7789", "8554", "8733"]
+sensor_ids = [ "7789", "8554"]
 
 def create_urls (sid):
 
@@ -37,12 +38,5 @@ for sid in sensor_ids:
 #============
 
 
-# target string format http://archive.luftdaten.info/2018-05-10/2018-05-10_sds011_sensor_7789.csv 
-
-
-#http://archive.luftdaten.info/2018-05-10/2018-05-10_sds011_sensor_5331.csv
-#http://archive.luftdaten.info/2018-05-10/2018-05-10_sds011_sensor_7789.csv
-#http://archive.luftdaten.info/2018-05-10/2018-05-10_sds011_sensor_8544.csv
-#http://archive.luftdaten.info/2018-05-10/2018-05-10_sds011_sensor_8733.csv
 
 # https://www.madavi.de/sensor/csvfiles.php?sensor=esp8266-3654427
