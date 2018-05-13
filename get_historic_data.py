@@ -8,8 +8,7 @@ end_date = '2018-05-12'
 
 date_list = list(rrule.rrule(rrule.DAILY, dtstart=parser.parse(start_date), until=parser.parse(end_date)))
 
-#sensor_ids = ["5331", "7789", "8554", "8733"]
-sensor_ids = [ "7789", "8554"]
+sensor_ids = ["5331", "7789", "8554", "8733"]
 
 def create_urls (sid):
 
@@ -35,8 +34,4 @@ def create_urls (sid):
 for sid in sensor_ids:
 	create_urls (sid)
 
-#============
 
-
-
-# https://www.madavi.de/sensor/csvfiles.php?sensor=esp8266-3654427
