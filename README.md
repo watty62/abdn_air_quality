@@ -33,11 +33,35 @@ The Madavi URLs are in the format: https://www.madavi.de/sensor/csvfiles.php?sen
 
 This links to a page of data CSVs for the current month and Zip files for past months.  
 
-**Update 13-May-2018** The *get_madavi.py* now retrieves 73 CSV files from the Madavi site to 12-May-2018. These are the current month CSVs. *Next* to grab the zips for previous files, download and extract these. 
+**Update 14-May-2018** 
+The *get_madavi.py* script now retrieves 
+* the CSV files from the Madavi site to the day before the current date. At the time of writing these 73 files are for May, up to 12-May-2018.
+* Then it downloads and extracts the zip files for previous months. These contain 300+ CSVs for previous months.
 
+At present all of these downloads end up in the root directory from where I am moving them manually to the following structure.
+
+```
+\root
+     \data
+          \Luftdaten
+                   \sensor_ID
+                   \sensor_id
+                   \etc
+          \madavi
+                 \sensor_ID
+                 \sensor_id
+                   \etc
+
+```
+
+## The data
+
+Our next task it to make sense of the data
 There is an issue with the Madavi data in that the header has two fewer columns than it has data. It is not yet clear if the header is missing attribute names, or the data contains superfluous columns. 
 
 
+## To be done - priorities
+Ideally we should download and extract the CSV / Zip files to their correct sub-folders.
 
-## To be done
+## To be done - sometime
 We should look at data from the [official monitoring equipment](http://www.scottishairquality.co.uk/latest/site-info.php?site_id=ABD0&view=latest).
