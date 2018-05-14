@@ -1,0 +1,5 @@
+Time;durP1;ratioP1;P1;durP2;ratioP2;P2;SDS_P1;SDS_P2;Temp;Humidity;BMP_temperature;BMP_pressure;BME280_temperature;BME280_humidity;BME280_pressure;Samples;Min_cycle;Max_cycle;Signal
+2018/01/14 16:30:57;;;;;;;;;;;8.50;67.60;;;;;;616944;225;74113;-77
+2018/01/14 16:33:23;;;;;;;;;;;8.40;67.40;;;;;;608620;229;29823;-77
+2018/01/14 16:35:48;;;;;;;;;;;8.50;67.30;;;;;;615125;233;20356;-77
+2018/01/14 16:38:16;;;;;;;;;;;;;;;;;;617736;232;26190;-72
