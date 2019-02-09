@@ -27,6 +27,12 @@ These can be drilled down from http://archive.luftdaten.info into a date directo
 
 **Update 12-May-2018** The *get_historic_data.py* now retrieves 505 CSV files from the Luftdaten site to 10-May-2018
 
+**Update 09-Feb-2019** The *get_historic_data.py* now has command line arguments for date range (-sd start date, -ed end date), it defaults to the previous dates if none are given. 
+
+By using -v (verbose) argument the full download & errors are visible at the command line.
+
+It also sorts the files into directories automatically. 
+
 ### Madavi
 
 The Madavi URLs are in the format: https://www.madavi.de/sensor/csvfiles.php?sensor=esp8266-3654427  
@@ -68,6 +74,6 @@ We should look at data from the [official monitoring equipment](http://www.scott
 
 ## Getting Started
 
-You will need Python 3 installed, you will also need a number of python modules, these can be installed via teh command line use "pip install":
+You will need Python 3 installed, you will also need a number of python modules, these can be installed via the command line use "pip install":
 * pip install requests
 * pip install python-dateutil
