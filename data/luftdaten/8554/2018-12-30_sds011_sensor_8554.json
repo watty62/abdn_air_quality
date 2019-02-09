@@ -1,0 +1,44 @@
+[
+    {
+        "sensor_id": "8554",
+        "sensor_type": "SDS011",
+        "location": "4315",
+        "lat": "57.146",
+        "lon": "-2.114",
+        "timestamp": "2018-12-30T14:21:55",
+        "P1": "7.10",
+        "durP1": "",
+        "ratioP1": "",
+        "P2": "4.93",
+        "durP2": "",
+        "ratioP2": ""
+    },
+    {
+        "sensor_id": "8554",
+        "sensor_type": "SDS011",
+        "location": "4315",
+        "lat": "57.146",
+        "lon": "-2.114",
+        "timestamp": "2018-12-30T20:54:10",
+        "P1": "1.37",
+        "durP1": "",
+        "ratioP1": "",
+        "P2": "0.87",
+        "durP2": "",
+        "ratioP2": ""
+    },
+    {
+        "sensor_id": "8554",
+        "sensor_type": "SDS011",
+        "location": "4315",
+        "lat": "57.146",
+        "lon": "-2.114",
+        "timestamp": "2018-12-30T21:16:15",
+        "P1": "3.90",
+        "durP1": "",
+        "ratioP1": "",
+        "P2": "2.97",
+        "durP2": "",
+        "ratioP2": ""
+    }
+]
