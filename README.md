@@ -65,3 +65,9 @@ Ideally we should download and extract the CSV / Zip files to their correct sub-
 
 ## To be done - sometime
 We should look at data from the [official monitoring equipment](http://www.scottishairquality.co.uk/latest/site-info.php?site_id=ABD0&view=latest).
+
+## Getting Started
+
+You will need Python 3 installed, you will also need a number of python modules, these can be installed via teh command line use "pip install":
+* pip install requests
+* pip install python-dateutil
