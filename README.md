@@ -31,8 +31,6 @@ These can be drilled down from http://archive.luftdaten.info into a date directo
 
 By using -v (verbose) argument the full download & errors are visible at the command line.
 
-It also sorts the files into directories automatically. 
-
 ### Madavi
 
 The Madavi URLs are in the format: https://www.madavi.de/sensor/csvfiles.php?sensor=esp8266-3654427  
@@ -64,10 +62,11 @@ At present all of these downloads end up in the root directory from where I am m
 
 Our next task it to make sense of the data
 There is an issue with the Madavi data in that the header has two fewer columns than it has data. It is not yet clear if the header is missing attribute names, or the data contains superfluous columns. 
-
+**update 09-Feb-2019** now *MrParsy* can convert the data to json it's a bit easier to see this. My guess is that the final -80 number should be the signal value (it's probably in dBs). But other than that I'm not sure?
 
 ## To be done - priorities
 Ideally we should download and extract the CSV / Zip files to their correct sub-folders.
+**update 09-20-2019** *get_historic_data.py* now does this
 
 ## To be done - sometime
 We should look at data from the [official monitoring equipment](http://www.scottishairquality.co.uk/latest/site-info.php?site_id=ABD0&view=latest).
