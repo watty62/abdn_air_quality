@@ -20,7 +20,7 @@ def create_urls (sid):
 			r = requests.get(file_add)
 			r.raise_for_status()
 		except HTTPError:
-			print ('Could not download page')
+			print ('Could not download page (' + fname + ')')
 		else:
 			
 			# Save the string to a file
