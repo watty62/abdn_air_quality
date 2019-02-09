@@ -1,4 +1,5 @@
 import requests, argparse
+import time
 from requests.exceptions import HTTPError
 from dateutil import rrule, parser
 import os
@@ -19,13 +20,15 @@ def main ():
 	if (args.start_date): 
 		start_date = args.start_date
 	else:
-		print ('INFO: using default start date, 2017-10-01')
-		start_date = '2017-10-01'
+		#start_date = time.strftime(str(int("%Y")-1 + "-%m-%d")) not working
+		start_date = '2017-10-01' 
+		print ('INFO: using default start date, ' + start_date)
 	if (args.end_date):
 		end_date = args.end_date
 	else:
-		print ('INFO: using default end date, 2018-05-12')
-		end_date = '2018-05-12'
+		end_date = time.strftime("%Y-%m-%d")
+		#end_date = '2018-05-12'
+		print ('INFO: using default end date, ' + end_date)
 
 	date_list = list(rrule.rrule(rrule.DAILY, dtstart=parser.parse(start_date), until=parser.parse(end_date)))
 	if (not(date_list)):
