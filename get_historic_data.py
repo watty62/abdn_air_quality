@@ -36,13 +36,12 @@ def main ():
 
 	for sid in sensor_ids:
 		print('INFO: downloading from SID ' + sid)
+		dir = "data/luftdaten/"+ sid
 		try:
-			os.makedirs(sid)
+			os.makedirs(dir)
 		except FileExistsError:
 			# directory already exists
 			pass
-		dir = sid
-		
 		N = 0
 		L = str(0)
 		for dy in date_list:
@@ -53,7 +52,10 @@ def main ():
 def create_urls (sid, dy, dir):
 	file_add = "http://archive.luftdaten.info/" + dy.strftime('%Y-%m-%d') + "/"+ dy.strftime('%Y-%m-%d') + "_sds011_sensor_" + sid+ ".csv"
 	fname = dir + "/" + dy.strftime('%Y-%m-%d') + "_sds011_sensor_" + sid+ ".csv"
-		
+	
+	#could add check if file already exists here?
+	#if it did normally skip
+
 	try:
 		r = requests.get(file_add)
 		r.raise_for_status()
