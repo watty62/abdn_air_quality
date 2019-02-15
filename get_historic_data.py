@@ -46,7 +46,7 @@ def main ():
 
 	for sid in sensor_ids:
 		print('INFO: downloading from SID ' + sid)
-		dir = "data/luftdaten2/"+ sid
+		dir = "data/luftdaten/"+ sid
 		try:
 			os.makedirs(dir)
 		except FileExistsError:
