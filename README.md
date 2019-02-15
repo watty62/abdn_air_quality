@@ -14,6 +14,10 @@ There are currently four community sensors:
 | 7789    | **tbc**   |57.130  |-2.087   |
 | 8554    | 12017738  |57.146  |-2.114   |
 | 8733    | 3654335   |57.136  |-2.107   |
+| 15462   |  xxx  | xxx  |  xxx |
+| 17079   |  xxx  | xxx  | xxx  |
+
+**Note** Compare [these numbers and locations](http://deutschland.maps.luftdaten.info/#12/57.1357/-2.0001) to [these](https://www.madavi.de/sensor/feinstaub-map-dht/#12/57.1450/-2.0479)
 
 
 The sensors generate data which is uploaded to two sites: Luftdaten and Madavi. 
@@ -28,6 +32,8 @@ These can be drilled down from http://archive.luftdaten.info into a date directo
 **Update 12-May-2018** The *get_historic_data.py* now retrieves 505 CSV files from the Luftdaten site to 10-May-2018
 
 **Update 09-Feb-2019** The *get_historic_data.py* now has command line arguments for date range (-sd start date, -ed end date), it defaults to the previous dates if none are given. 
+
+Example: `get_historic_data.py -st 01-01-2018 -ed 09-20-2019 -v`
 
 By using -v (verbose) argument the full download & errors are visible at the command line.
 
@@ -61,7 +67,10 @@ At present all of these downloads end up in the root directory from where I am m
 ## The data
 
 Our next task it to make sense of the data
-There is an issue with the Madavi data in that the header has two fewer columns than it has data. It is not yet clear if the header is missing attribute names, or the data contains superfluous columns. 
+There is an issue with the Madavi data in that the header has two fewer columns than it has data. 
+
+This documented in a [Github issue on the original repo](https://github.com/opendata-stuttgart/madavi-api/issues/8)
+
 **update 09-Feb-2019** now *MrParsy* can convert the data to json it's a bit easier to see this. My guess is that the final -80 number should be the signal value (it's probably in dBs). But other than that I'm not sure?
 
 ## To be done - priorities
