@@ -33,6 +33,8 @@ These can be drilled down from http://archive.luftdaten.info into a date directo
 
 **Update 09-Feb-2019** The *get_historic_data.py* now has command line arguments for date range (-sd start date, -ed end date), it defaults to the previous dates if none are given. 
 
+Example: `get_historic_data.py -st 01-01-2018 -ed 09-20-2019 -v`
+
 By using -v (verbose) argument the full download & errors are visible at the command line.
 
 ### Madavi
