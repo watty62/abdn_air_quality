@@ -14,6 +14,10 @@ There are currently four community sensors:
 | 7789    | **tbc**   |57.130  |-2.087   |
 | 8554    | 12017738  |57.146  |-2.114   |
 | 8733    | 3654335   |57.136  |-2.107   |
+| 15462   |  xxx  | xxx  |  xxx |
+| 17079   |  xxx  | xxx  | xxx  |
+
+**Note** Compare [these numbers and locations](http://deutschland.maps.luftdaten.info/#12/57.1357/-2.0001) to [these](https://www.madavi.de/sensor/feinstaub-map-dht/#12/57.1450/-2.0479)
 
 
 The sensors generate data which is uploaded to two sites: Luftdaten and Madavi. 
