@@ -96,7 +96,8 @@ def create_urls (sid, dy, dir):
 				zip_file_data = zipfile.ZipFile(io.BytesIO(r.content))
 			try:
 				zip_file_data.extract(csv_file, path = dir)
-				print ('INFO: completed file (' + fname + ')')
+				if (args.verbose):
+					print ('INFO: completed file (' + fname + ')')
 			except:
 				print ('ERROR: Could not download file (' + fname + ')')
 		except HTTPError:
