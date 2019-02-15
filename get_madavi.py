@@ -13,14 +13,14 @@ def get_links(url):
 		
 		if link.get('href')[-3:] == "csv":
 			target = "https://www.madavi.de/sensor/" + link.get('href')
-			# do stuff with csv files
-			'''
+			
+			# download the current month's CSV Madavi data
 			r = requests.get(target, stream=True)
 			with open(link.get('href'), 'wb') as f:
 				for chunk in r.iter_content(chunk_size=1024): 
 					if chunk: # filter out keep-alive new chunks
 						f.write(chunk)
-			'''
+			
 			pass
 		elif link.get('href')[-3:] == "zip":
 			zip_file_url =  "https://www.madavi.de/sensor/" + link.get('href')
