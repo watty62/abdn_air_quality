@@ -18,6 +18,9 @@ aparser.add_argument(
 aparser.add_argument(
     '-v', '--v', dest='verbose', action = 'store_true',
     help='verbose output')
+aparser.add_argument(
+    '-id', '--id', nargs ='+', dest='sensor_ids', type=str,
+    help='ID list, use -id 123456 234567 345678')
 args = aparser.parse_args()
 
 zip_file_data = 0
@@ -41,8 +44,13 @@ def main ():
 	if (not(date_list)):
 		print ('ERROR: dates not valid')
 		exit()
-
-	sensor_ids = ['3654427', '12017738','3654335']
+	
+	if (args.sensor_ids):
+		sensor_ids = args.sensor_ids
+	else:
+		sensor_ids = ['3654427', '12017738','3654335']
+	print ('Using sensor ids: ' + ', '.join(sensor_ids))
+	
 
 	for sid in sensor_ids:
 		print('INFO: downloading from SID ' + sid)
