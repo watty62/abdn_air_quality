@@ -29,11 +29,10 @@ The sensors generate data which is uploaded to two sites: Luftdaten and Madavi.
 The Luftdaten URLs are in the format: http://archive.luftdaten.info/2018-05-10/2018-05-10_sds011_sensor_5331.csv  
 These can be drilled down from http://archive.luftdaten.info into a date directory, then the CSV for a particular sensor from the table above. 
 
-**Update 12-May-2018** The *get_historic_data.py* now retrieves 505 CSV files from the Luftdaten site to 10-May-2018
-
 **Update 09-Feb-2019** The *get_historic_data.py* now has command line arguments for date range (-sd start date, -ed end date), it defaults to the previous dates if none are given. 
 
-Example: `get_historic_data.py -st 01-01-2018 -ed 09-20-2019 -v`
+Example: `python get_historic_data.py --startdate 2019-02-16 --enddate 2019-02-22 -v
+`
 
 By using -v (verbose) argument the full download & errors are visible at the command line.
 
@@ -43,8 +42,7 @@ The Madavi URLs are in the format: https://www.madavi.de/sensor/csvfiles.php?sen
 
 This links to a page of data CSVs for the current month and Zip files for past months.  
 
-**Update 14-May-2018** 
-The *get_madavi.py* script now retrieves 
+The *get_madavi.py* script retrieves 
 * the CSV files from the Madavi site to the day before the current date. At the time of writing these 73 files are for May, up to 12-May-2018.
 * Then it downloads and extracts the zip files for previous months. These contain 300+ CSVs for previous months.
 
