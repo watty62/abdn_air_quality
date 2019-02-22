@@ -6,7 +6,7 @@ This project aims to analyse and visualise the data generated from [the project]
 
 
 ## Community Sensors 
-There are currently four community sensors:  
+There are currently six live community sensors:  
 
 | Luftdaten_ID | Madavi_ID |latitude| longitude|
 | :------ |:----------|:--------|:--------|
