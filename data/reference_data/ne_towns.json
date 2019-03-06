@@ -1,0 +1,371 @@
+[
+    {
+        "id": 2656539,
+        "name": "Ballogie",
+        "country": "GB",
+        "coord": {
+            "lon": -2.70504,
+            "lat": 57.048569
+        }
+    },
+    {
+        "id": 3333224,
+        "name": "Aberdeen City",
+        "country": "GB",
+        "coord": {
+            "lon": -2.16667,
+            "lat": 57.166672
+        }
+    },
+    {
+        "id": 2635630,
+        "name": "Torry",
+        "country": "GB",
+        "coord": {
+            "lon": -2.08672,
+            "lat": 57.136959
+        }
+    },
+    {
+        "id": 2656402,
+        "name": "Banff",
+        "country": "GB",
+        "coord": {
+            "lon": -2.52964,
+            "lat": 57.664768
+        }
+    },
+    {
+        "id": 2642932,
+        "name": "Maryculter",
+        "country": "GB",
+        "coord": {
+            "lon": -2.23738,
+            "lat": 57.082859
+        }
+    },
+    {
+        "id": 2640351,
+        "name": "Peterhead",
+        "country": "GB",
+        "coord": {
+            "lon": -1.79806,
+            "lat": 57.50584
+        }
+    },
+    {
+        "id": 2657832,
+        "name": "Aberdeen",
+        "country": "GB",
+        "coord": {
+            "lon": -2.09814,
+            "lat": 57.143688
+        }
+    },
+    {
+        "id": 2657830,
+        "name": "Aberdeenshire",
+        "country": "GB",
+        "coord": {
+            "lon": -2.66667,
+            "lat": 57.166672
+        }
+    },
+    {
+        "id": 2642692,
+        "name": "Methlick",
+        "country": "GB",
+        "coord": {
+            "lon": -2.24002,
+            "lat": 57.425869
+        }
+    },
+    {
+        "id": 2646073,
+        "name": "Inverurie",
+        "country": "GB",
+        "coord": {
+            "lon": -2.37736,
+            "lat": 57.284458
+        }
+    },
+    {
+        "id": 2646384,
+        "name": "Huntly",
+        "country": "GB",
+        "coord": {
+            "lon": -2.78608,
+            "lat": 57.447411
+        }
+    },
+    {
+        "id": 2646157,
+        "name": "Insch",
+        "country": "GB",
+        "coord": {
+            "lon": -2.61321,
+            "lat": 57.342731
+        }
+    },
+    {
+        "id": 2642459,
+        "name": "Milton of Murtle",
+        "country": "GB",
+        "coord": {
+            "lon": -2.21667,
+            "lat": 57.099998
+        }
+    },
+    {
+        "id": 2655978,
+        "name": "Belhelvie",
+        "country": "GB",
+        "coord": {
+            "lon": -2.08964,
+            "lat": 57.248428
+        }
+    },
+    {
+        "id": 6269311,
+        "name": "Walton",
+        "country": "GB",
+        "coord": {
+            "lon": -2.2131,
+            "lat": 57.192692
+        }
+    },
+    {
+        "id": 2634091,
+        "name": "Whitehills",
+        "country": "GB",
+        "coord": {
+            "lon": -2.58333,
+            "lat": 57.666672
+        }
+    },
+    {
+        "id": 2635329,
+        "name": "Turriff",
+        "country": "GB",
+        "coord": {
+            "lon": -2.45932,
+            "lat": 57.538399
+        }
+    },
+    {
+        "id": 2635652,
+        "name": "Torphins",
+        "country": "GB",
+        "coord": {
+            "lon": -2.62398,
+            "lat": 57.10561
+        }
+    },
+    {
+        "id": 2636814,
+        "name": "Stonehaven",
+        "country": "GB",
+        "coord": {
+            "lon": -2.21177,
+            "lat": 56.96365
+        }
+    },
+    {
+        "id": 2639992,
+        "name": "Portsoy",
+        "country": "GB",
+        "coord": {
+            "lon": -2.68956,
+            "lat": 57.681438
+        }
+    },
+    {
+        "id": 2640030,
+        "name": "Portlethen",
+        "country": "GB",
+        "coord": {
+            "lon": -2.13066,
+            "lat": 57.054741
+        }
+    },
+    {
+        "id": 2640064,
+        "name": "Port Erroll",
+        "country": "GB",
+        "coord": {
+            "lon": -1.83333,
+            "lat": 57.416672
+        }
+    },
+    {
+        "id": 2640253,
+        "name": "Pitmedden",
+        "country": "GB",
+        "coord": {
+            "lon": -2.18022,
+            "lat": 57.33691
+        }
+    },
+    {
+        "id": 2641007,
+        "name": "Oldmeldrum",
+        "country": "GB",
+        "coord": {
+            "lon": -2.3199,
+            "lat": 57.334919
+        }
+    },
+    {
+        "id": 2641549,
+        "name": "Newtonhill",
+        "country": "GB",
+        "coord": {
+            "lon": -2.15,
+            "lat": 57.033329
+        }
+    },
+    {
+        "id": 2641691,
+        "name": "Newburgh",
+        "country": "GB",
+        "coord": {
+            "lon": -2,
+            "lat": 57.299999
+        }
+    },
+    {
+        "id": 2642430,
+        "name": "Mintlaw",
+        "country": "GB",
+        "coord": {
+            "lon": -2.00099,
+            "lat": 57.524139
+        }
+    },
+    {
+        "id": 2643262,
+        "name": "Macduff",
+        "country": "GB",
+        "coord": {
+            "lon": -2.49686,
+            "lat": 57.67012
+        }
+    },
+    {
+        "id": 2645358,
+        "name": "Kintore",
+        "country": "GB",
+        "coord": {
+            "lon": -2.3454,
+            "lat": 57.237209
+        }
+    },
+    {
+        "id": 2645836,
+        "name": "Kemnay",
+        "country": "GB",
+        "coord": {
+            "lon": -2.44395,
+            "lat": 57.235729
+        }
+    },
+    {
+        "id": 2649089,
+        "name": "Fraserburgh",
+        "country": "GB",
+        "coord": {
+            "lon": -2.01844,
+            "lat": 57.687439
+        }
+    },
+    {
+        "id": 2650086,
+        "name": "Ellon",
+        "country": "GB",
+        "coord": {
+            "lon": -2.07313,
+            "lat": 57.364052
+        }
+    },
+    {
+        "id": 2650601,
+        "name": "Dyce",
+        "country": "GB",
+        "coord": {
+            "lon": -2.17676,
+            "lat": 57.205219
+        }
+    },
+    {
+        "id": 2655288,
+        "name": "Boddam",
+        "country": "GB",
+        "coord": {
+            "lon": -1.78333,
+            "lat": 57.466671
+        }
+    },
+    {
+        "id": 2655522,
+        "name": "Blackburn",
+        "country": "GB",
+        "coord": {
+            "lon": -2.3,
+            "lat": 57.200001
+        }
+    },
+    {
+        "id": 2656405,
+        "name": "Banchory",
+        "country": "GB",
+        "coord": {
+            "lon": -2.48824,
+            "lat": 57.051682
+        }
+    },
+    {
+        "id": 2656454,
+        "name": "Balmedie",
+        "country": "GB",
+        "coord": {
+            "lon": -2.06163,
+            "lat": 57.250519
+        }
+    },
+    {
+        "id": 2657509,
+        "name": "Alford",
+        "country": "GB",
+        "coord": {
+            "lon": -2.70298,
+            "lat": 57.232571
+        }
+    },
+    {
+        "id": 2657775,
+        "name": "Aboyne",
+        "country": "GB",
+        "coord": {
+            "lon": -2.78023,
+            "lat": 57.075459
+        }
+    },
+    {
+        "id": 2657839,
+        "name": "Aberchirder",
+        "country": "GB",
+        "coord": {
+            "lon": -2.62856,
+            "lat": 57.56012
+        }
+    },
+    {
+        "id": 6640068,
+        "name": "Westhill",
+        "country": "GB",
+        "coord": {
+            "lon": -2.27966,
+            "lat": 57.15263
+        }
+    }
+]
