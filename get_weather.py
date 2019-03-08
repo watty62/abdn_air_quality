@@ -10,7 +10,7 @@ targets = [2656539, 3333224, 2635630, 2656402, 2642932, 2640351, 2657832, 265783
            2641691, 2642430, 2643262, 2645358, 2645836, 2649089, 2650086, 2650601, 2655288, 2655522, 2656405, 2656454,
            2657509, 2657775, 2657839, 6640068]
 '''
-location = "2656539"
+location = "2656539" #temporary single value
 
 
 def get_credentials():
@@ -33,12 +33,22 @@ def test_some_weather(APPID, loc):
     else:
         return None
 
+def store_vals(location, payload):
+    # open a file for writing /data/weather/[location].csv
+    # iterate through outer and inner dictionary 
+    # write vals to CSV appending a line
 
 def main():
     APPID = get_credentials()
-    payload = test_some_weather(APPID, location)
-    print((payload))
 
+    # loop through targets list
+    payload = test_some_weather(APPID, location)
+    '''
+    example returned:
+    {'coord': {'lon': -2.71, 'lat': 57.05}, 'weather': [{'id': 500, 'main': 'Rain', 'description': 'light rain', 'icon': '10n'}], 'base': 'stations', 'main': {'temp': 277.85, 'pressure': 992, 'humidity': 81, 'temp_min': 276.48, 'temp_max': 279.15}, 'visibility': 10000, 'wind': {'speed': 4.1, 'deg': 200}, 'rain': {'1h': 0.89}, 'clouds': {'all': 75}, 'dt': 1552071964, 'sys': {'type': 1, 'id': 1440, 'message': 0.004, 'country': 'GB', 'sunrise': 1552027456, 'sunset': 1552067987}, 'id': 2656539, 'name': 'Ballogie', 'cod': 200}
+    '''
+
+    store_vals(location, payload)
 
 if __name__ == '__main__':
     main()
