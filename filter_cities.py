@@ -24,9 +24,14 @@ def filter_NE_only(city_list):
         GB = False
         NS = False
         EW = False
+        no_walton = False
         for key, val in city.items(): #outer dictionary
             if key == "country" and val == "GB":
                 GB = True # we are only interested in GB places (no point testing lat long of whole world)
+
+            if key=="name" and val != "Walton":
+                no_walton = True # needed because there is a fictional town "Walton" in the data
+
             if key == "coord":
                 for k, v in val.items(): #inner dictionary
                     # equivalent of our bounding box
@@ -34,7 +39,7 @@ def filter_NE_only(city_list):
                         EW = True
                     if k == "lat" and float(v) > 56.955 and float(v) < 57.6875:
                         NS = True
-            if GB and NS and EW:
+            if GB and NS and EW and no_walton:
                 short_list.append(city)
     return short_list
 
