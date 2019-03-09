@@ -45,11 +45,11 @@ def test_values(sensor_list):
                 delta_time = current_time - datetime.strptime(sense_time, "%Y-%m-%d %H:%M:%S")
                 delta_time = divmod(delta_time.days * 86400 + delta_time.seconds, 60)
                 if (delta_time[0]>15): #check >15min since last report
-                    print ('timestamp fail! - ' + str(location_id) + ', ' + param)
+                    print ('timestamp fail! - ' + str(sensor_list[location_id][param]['id']) + ', ' + param)
             except:
                 #no timestamp on this paramater
                 False
-
+    #test 
 
 def main():
     box = [57.5476,-1.9113,56.9630,-2.4682]
