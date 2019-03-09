@@ -29,19 +29,27 @@ def tidy_values(our_list):
                     'sensor_type' : sensor['sensor']['sensor_type']}
     return(new_dict)
 
-def extract_values(our_list):
-    #only for test
-    for sensor in our_list:
-        for key, val in sensor.items():
-            print(f"Key = {key} // Value = {val}")
-        print('===================')
-
-#def test_values(our_list):
+def test_values(sensor_list):
     #test that:
     #1. timestamps are fairly recent (within the last X minutes)
-    #2. check if humidity is >80% flag readings as invalid
+    #2. check if humidity is >80% flag PM readings as invalid
     #3. flag high P1/P2 readings (based on hard limits)
     #4. flag high P1/P2 readings based on group medium/std
+
+    #timestamps test
+    current_time = datetime.now()
+    for location_id in sensor_list:
+        for param in sensor_list[location_id]:
+            try:
+                sense_time = sensor_list[location_id][param]['timestamp']
+                delta_time = current_time - datetime.strptime(sense_time, "%Y-%m-%d %H:%M:%S")
+                delta_time = divmod(delta_time.days * 86400 + delta_time.seconds, 60)
+                if (delta_time[0]>15): #check >15min since last report
+                    print ('timestamp fail! - ' + str(location_id) + ', ' + param)
+            except:
+                #no timestamp on this paramater
+                False
+
 
 def main():
     box = [57.5476,-1.9113,56.9630,-2.4682]
@@ -51,19 +59,18 @@ def main():
     our_list = get_data(strbox)
     #our_list is a list of dictionaries
     
-    #extract_values(our_list) #prints ourlist
-
     tidy_list = tidy_values(our_list)
     #tidy_list is a list of dictionaries that is easier to work with.
+    
     weather_data = get_weather.main(box)
     #adds weather data to each sensor
 
     pp = pprint.PrettyPrinter(indent=1)
     pp.pprint (tidy_list)
     pp.pprint (weather_data)
-    return(tidy_list)
-    
-    #test_values(tidy_list)
+    test_values(tidy_list)
+
+    return()
 
 if __name__ == '__main__':
     main()
