@@ -45,6 +45,8 @@ def extract_values(our_list):
 
 def main():
     box = [57.5476,-1.9113,56.9630,-2.4682]
+    bigbox = [100,-1,20,-50]
+    #box = bigbox #test
     strbox = (str(box)[1:-1]).replace(" ", "")
     our_list = get_data(strbox)
     #our_list is a list of dictionaries
@@ -53,11 +55,12 @@ def main():
 
     tidy_list = tidy_values(our_list)
     #tidy_list is a list of dictionaries that is easier to work with.
-    tidy_list['openweathermap'] = get_weather.main(box)
+    weather_data = get_weather.main(box)
     #adds weather data to each sensor
 
     pp = pprint.PrettyPrinter(indent=1)
     pp.pprint (tidy_list)
+    pp.pprint (weather_data)
     return(tidy_list)
     
     #test_values(tidy_list)
