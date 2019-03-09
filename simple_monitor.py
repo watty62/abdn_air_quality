@@ -4,6 +4,7 @@ import requests
 from datetime import datetime
 import pprint
 import get_weather
+import math
 
 def get_data(box ):
     #gets luftdaten data for all sensors within a givin lat/log box
@@ -29,7 +30,7 @@ def tidy_values(our_list):
                     'sensor_type' : sensor['sensor']['sensor_type']}
     return(new_dict)
 
-def test_values(sensor_list):
+def test_values(sensor_list, weather_data):
     #test that:
     #1. timestamps are fairly recent (within the last X minutes)
     #2. check if humidity is >80% flag PM readings as invalid
@@ -49,12 +50,35 @@ def test_values(sensor_list):
             except:
                 #no timestamp on this paramater
                 False
-    #test 
+    #PM test
+    for location_id in sensor_list:
+        #first find nearest weather city from weather_data 
+        #tbd but required for bigbox test
+        min_dist = 1000000
+        for city in weather_data['list']:
+            dist = math.sqrt(
+                math.pow(city['coord']['Lat'] - float(sensor_list[location_id]['location']['latitude']) ,2) +
+                math.pow(city['coord']['Lon'] - float(sensor_list[location_id]['location']['longitude']) ,2)
+                )
+            if (dist < min_dist):
+                min_dist = dist
+                local_city = city
+
+        #for param in sensor_list[location_id]:
+        #    try:
+        #        sense_time = sensor_list[location_id][param]['timestamp']
+        #        delta_time = current_time - datetime.strptime(sense_time, "%Y-%m-%d %H:%M:%S")
+        #        delta_time = divmod(delta_time.days * 86400 + delta_time.seconds, 60)
+        #        if (delta_time[0]>15): #check >15min since last report
+        #            print ('timestamp fail! - ' + str(sensor_list[location_id][param]['id']) + ', ' + param)
+        #    except:
+        #        #no timestamp on this paramater
+        #       False 
 
 def main():
     box = [57.5476,-1.9113,56.9630,-2.4682]
     bigbox = [100,-1,20,-50]
-    #box = bigbox #test
+    box = bigbox #test
     strbox = (str(box)[1:-1]).replace(" ", "")
     our_list = get_data(strbox)
     #our_list is a list of dictionaries
@@ -68,7 +92,7 @@ def main():
     pp = pprint.PrettyPrinter(indent=1)
     pp.pprint (tidy_list)
     pp.pprint (weather_data)
-    test_values(tidy_list)
+    test_values(tidy_list, weather_data)
 
     return()
 
