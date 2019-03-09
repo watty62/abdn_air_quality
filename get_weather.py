@@ -35,7 +35,7 @@ def test_some_weather(APPID, loc):
 
 def store_vals(location, payload):
     # open a file for writing /data/weather/[location].csv
-    # iterate through outer and inner dictionary 
+    # iterate through outer and inner dictionary
     # write vals to CSV appending a line
 
 def main():
