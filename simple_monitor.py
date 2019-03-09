@@ -7,7 +7,7 @@ import get_weather
 import math
 
 def get_data(box ):
-    #gets luftdaten data for all sensors within a givin lat/log box
+    #gets luftdaten data for all sensors within a given lat/log box
     #box = 'lat_0,long_0,lat_1,long_1'
     r = requests.get('https://api.luftdaten.info/v1/filter/box='+box)
     my_json = r.json()
@@ -46,14 +46,14 @@ def test_values(sensor_list, weather_data):
                 delta_time = current_time - datetime.strptime(sense_time, "%Y-%m-%d %H:%M:%S")
                 delta_time = divmod(delta_time.days * 86400 + delta_time.seconds, 60)
                 if (delta_time[0]>15): #check >15min since last report
-                    print ('timestamp fail! - ' + str(sensor_list[location_id][param]['id']) + ', ' + param)
+                    print ('timestamp fail!, id = ' + str(sensor_list[location_id][param]['id']) + ', ' + param)
             except:
                 #no timestamp on this paramater
                 False
+    
     #PM test
     for location_id in sensor_list:
         #first find nearest weather city from weather_data 
-        #tbd but required for bigbox test
         min_dist = 1000000
         for city in weather_data['list']:
             dist = math.sqrt(
@@ -63,17 +63,23 @@ def test_values(sensor_list, weather_data):
             if (dist < min_dist):
                 min_dist = dist
                 local_city = city
-
-        #for param in sensor_list[location_id]:
-        #    try:
-        #        sense_time = sensor_list[location_id][param]['timestamp']
-        #        delta_time = current_time - datetime.strptime(sense_time, "%Y-%m-%d %H:%M:%S")
-        #        delta_time = divmod(delta_time.days * 86400 + delta_time.seconds, 60)
-        #        if (delta_time[0]>15): #check >15min since last report
-        #            print ('timestamp fail! - ' + str(sensor_list[location_id][param]['id']) + ', ' + param)
-        #    except:
-        #        #no timestamp on this paramater
-        #       False 
+        #check local humidity level is within range based on weather
+        #NB sensor humidity not used as not all sensors have this.
+        if (local_city['main']['humidity'] > 70):
+            #humidity is too high, PM readings should be ignored
+            False
+        else:
+            try:
+                #ref: http://ec.europa.eu/environment/air/quality/standards.htm
+                sense_P1 = sensor_list[location_id]['P1']['value']
+                if (sense_P1>40): #check PM10 >40 ug/m^3
+                    print ('PM1 high reading!, id = ' + str(sensor_list[location_id]['P1']['id']) + ', ' + 'PM1 = ' + str(sense_P1))
+                sense_P2 = sensor_list[location_id]['P2']['value']
+                if (sense_P2>20): #check PM2.5 >20 ug/m^3
+                    print ('PM2 high reading!, id = ' + str(sensor_list[location_id]['P2']['id']) + ', ' + 'PM2 = ' + str(sense_P2))
+            except:
+                #no PM1 or PM2 readings
+                False 
 
 def main():
     box = [57.5476,-1.9113,56.9630,-2.4682]
@@ -89,9 +95,9 @@ def main():
     weather_data = get_weather.main(box)
     #adds weather data to each sensor
 
-    pp = pprint.PrettyPrinter(indent=1)
-    pp.pprint (tidy_list)
-    pp.pprint (weather_data)
+    #pp = pprint.PrettyPrinter(indent=1)
+    #pp.pprint (tidy_list)
+    #pp.pprint (weather_data)
     test_values(tidy_list, weather_data)
 
     return()
