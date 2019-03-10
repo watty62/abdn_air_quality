@@ -10,7 +10,7 @@ targets = [2656539, 3333224, 2635630, 2656402, 2642932, 2640351, 2657832, 265783
            2641691, 2642430, 2643262, 2645358, 2645836, 2649089, 2650086, 2650601, 2655288, 2655522, 2656405, 2656454,
            2657509, 2657775, 2657839, 6640068]
 '''
-location = "2656539" #temporary single value
+location = "2656539"  # temporary single value
 
 
 def get_credentials():
@@ -33,10 +33,13 @@ def test_some_weather(APPID, loc):
     else:
         return None
 
+
 def store_vals(location, payload):
-    # open a file for writing /data/weather/[location].csv
-    # iterate through outer and inner dictionary
-    # write vals to CSV appending a line
+
+
+# open a file for writing /data/weather/[location].csv
+# iterate through outer and inner dictionary
+# write vals to CSV appending a line
 
 def main():
     APPID = get_credentials()
@@ -49,6 +52,7 @@ def main():
     '''
 
     store_vals(location, payload)
+
 
 if __name__ == '__main__':
     main()
