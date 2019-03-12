@@ -37,7 +37,7 @@ def filter_json(in_list):
 
 
 def check_against_stored(existing, found, right_now):
-    new_list = [] # to hold new and updated values
+    new_list = []  # to hold new and updated values
 
     for fd in found:
         added = False
@@ -53,18 +53,20 @@ def check_against_stored(existing, found, right_now):
             else:
                 if not added:
                     new_dict = dict()
-                    new_dict['id']=fd
+                    new_dict['id'] = fd
                     new_dict['first_seen'] = str(right_now)
                     new_dict['last_seen'] = str(right_now)
                     added = True
-                    new_list.append (new_dict)
-
-    # TODO Do we have ones that have disappeared? pass to send_alerts_if_down()
-
+                    new_list.append(new_dict)
+    return new_list
 
 
-def add_new_to_list():
-    pass
+def update_stored_list(in_list):
+    my_dict = dict()
+    my_dict['devices'] = in_list
+
+    with open ('last_seen.json', 'w') as out_file:
+        json.dump(my_dict, out_file, indent=4)
 
 
 def send_alerts_if_down():
@@ -76,8 +78,9 @@ def main():
     existing = get_sensor_list()
     whats_up = query_the_api()
     found = filter_json(whats_up)
-    check_against_stored(existing, found, right_now)
-    # add_new_to_list()
+    new_list = check_against_stored(existing, found, right_now)
+    update_stored_list(new_list)
+    # TODO Have some disappeared? check_if missing then pass to send_alerts_if_down()
     # send_alerts_if_down()
 
 
