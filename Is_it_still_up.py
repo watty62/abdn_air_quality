@@ -1,6 +1,10 @@
 ## work in progress
 
-import requests, json
+import requests, json, datetime
+
+
+def get_current_datetime():
+    return datetime.datetime.now()
 
 
 def get_sensor_list():
@@ -28,15 +32,35 @@ def filter_json(in_list):
 
     myset = set(found_list)  # stop duplicate values being added
     unique_list = list(myset)
+    # print (sorted(unique_list))
     return sorted(unique_list)
 
 
-def check_against_stored():
-    # TODO implement this function to check our found values against our stored ones
-    # Do we have ones that have disappeared? pass to send_alerts_if_down()
-    # Do we have new devices, not seen before? Send them to add_new_to_list()
-    # Updated our stored list with last seen values if changed
-    pass
+def check_against_stored(existing, found, right_now):
+    new_list = [] # to hold new and updated values
+
+    for fd in found:
+        added = False
+        for dev in existing['devices']:
+            x = dev['id']
+            if x == fd:
+                new_dict = dict()
+                new_dict['id'] = fd
+                new_dict['first_seen'] = dev['first_seen']
+                new_dict['last_seen'] = str(right_now)
+                added = True
+                new_list.append(new_dict)
+            else:
+                if not added:
+                    new_dict = dict()
+                    new_dict['id']=fd
+                    new_dict['first_seen'] = str(right_now)
+                    new_dict['last_seen'] = str(right_now)
+                    added = True
+                    new_list.append (new_dict)
+
+    # TODO Do we have ones that have disappeared? pass to send_alerts_if_down()
+
 
 
 def add_new_to_list():
@@ -48,13 +72,13 @@ def send_alerts_if_down():
 
 
 def main():
+    right_now = get_current_datetime()
     existing = get_sensor_list()
     whats_up = query_the_api()
     found = filter_json(whats_up)
-    print(found)
-    check_against_stored()
-    add_new_to_list()
-    send_alerts_if_down()
+    check_against_stored(existing, found, right_now)
+    # add_new_to_list()
+    # send_alerts_if_down()
 
 
 if __name__ == '__main__':
