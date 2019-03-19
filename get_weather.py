@@ -34,7 +34,7 @@ def store_vals(payload):
     # write vals to CSV appending a line
 
 def main(box = [57.5476,-1.9113,56.9630,-2.4682]):
-    #openweathermap box is reversed from luftdaten.
+    # openweathermap box is reversed from luftdaten.
     box = [box[3],box[2],box[1],box[0]]
     APPID = get_credentials()
     weather_data = get_some_weather(APPID, box)
@@ -43,7 +43,7 @@ def main(box = [57.5476,-1.9113,56.9630,-2.4682]):
     {'coord': {'lon': -2.71, 'lat': 57.05}, 'weather': [{'id': 500, 'main': 'Rain', 'description': 'light rain', 'icon': '10n'}], 'base': 'stations', 'main': {'temp': 277.85, 'pressure': 992, 'humidity': 81, 'temp_min': 276.48, 'temp_max': 279.15}, 'visibility': 10000, 'wind': {'speed': 4.1, 'deg': 200}, 'rain': {'1h': 0.89}, 'clouds': {'all': 75}, 'dt': 1552071964, 'sys': {'type': 1, 'id': 1440, 'message': 0.004, 'country': 'GB', 'sunrise': 1552027456, 'sunset': 1552067987}, 'id': 2656539, 'name': 'Ballogie', 'cod': 200}
     '''
 
-    #store_vals(weather_data)
+    # store_vals(weather_data)
     return(weather_data)
 
 if __name__ == '__main__':

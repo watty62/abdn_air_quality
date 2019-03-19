@@ -5,7 +5,7 @@ from datetime import datetime
 import pprint
 import get_weather
 import math
-
+from math import sin, cos, sqrt, atan2, radians
 
 def get_data(box):
     # gets luftdaten data for all sensors within a given lat/log box
@@ -58,14 +58,31 @@ def test_values(sensor_list, weather_data):
     for location_id in sensor_list:
         # first find nearest weather city from weather_data
         min_dist = 1000000
+        lat1a = float(sensor_list[location_id]['location']['latitude'])
+        lon1a = float(sensor_list[location_id]['location']['longitude'])
+        lat1 = radians(lat1a)
+        lon1 = radians(lon1a)
         for city in weather_data['list']:
-            dist = math.sqrt(
-                math.pow(city['coord']['Lat'] - float(sensor_list[location_id]['location']['latitude']), 2) +
-                math.pow(city['coord']['Lon'] - float(sensor_list[location_id]['location']['longitude']), 2)
-            )
+            lat2 = city['coord']['Lat']
+            lon2 = city['coord']['Lon']
+            # see https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266 for details
+
+            R = 6373.0 #radius of earth
+            lat2 = radians(lat2)
+            lon2 = radians(lon2)
+            dlon = lon2 - lon1
+            dlat = lat2 - lat1
+            a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            dist = R * c
+
             if (dist < min_dist):
                 min_dist = dist
                 local_city = city
+        # lat2 = local_city['coord']['Lat']
+        # lon2 = local_city['coord']['Lon']
+        # print (lat1a, lon1a, " || " ,  lat2, lon2, " || ", min_dist, local_city['name'])
+
         # check local humidity level is within range based on weather
         # NB sensor humidity not used as not all sensors have this.
         if (local_city['main']['humidity'] > 70):
@@ -76,30 +93,33 @@ def test_values(sensor_list, weather_data):
                 # ref: http://ec.europa.eu/environment/air/quality/standards.htm
                 sense_P1 = sensor_list[location_id]['P1']['value']
                 if (sense_P1 > 40):  # check PM10 >40 ug/m^3
-                    print ('PM1 high reading!, id = ' + str(
+                    print ('[WARNING] PM1 high reading!, id = ' + str(
                         sensor_list[location_id]['P1']['id']) + ', ' + 'PM1 = ' + str(sense_P1))
+                    print (' -[info] Distance to weather station (' + local_city['name'] + ') = ' + str(int(min_dist)) + 'km')
                 sense_P2 = sensor_list[location_id]['P2']['value']
                 if (sense_P2 > 20):  # check PM2.5 >20 ug/m^3
-                    print ('PM2 high reading!, id = ' + str(
+                    print ('[WARNING] PM2 high reading!, id = ' + str(
                         sensor_list[location_id]['P2']['id']) + ', ' + 'PM2 = ' + str(sense_P2))
+                    print (' -[info] Distance to weather station (' + local_city['name'] + ') = ' + str(int(min_dist)) + 'km')
+
             except:
                 # no PM1 or PM2 readings
                 False
 
 
 def main():
-    box = [57.5476, -1.9113, 56.9630, -2.4682]
-    bigbox = [100, -1, 20, -50]
-    # box = bigbox #test
+    Aberdeen = [57.25, -2.40, 57.00, -2.00]
+    Aberdeenshire = [57.75, -4.00, 56.74, -1.70]
+    WesternEurope = [60, -10, 40, 20] 
+    box = WesternEurope
     strbox = (str(box)[1:-1]).replace(" ", "")
     our_list = get_data(strbox)
     # our_list is a list of dictionaries
 
     tidy_list = tidy_values(our_list)
     # tidy_list is a list of dictionaries that is easier to work with.
-    print(tidy_list)
+
     weather_data = get_weather.main(box)
-    # adds weather data to each sensor
 
     # pp = pprint.PrettyPrinter(indent=1)
     # pp.pprint (tidy_list)
