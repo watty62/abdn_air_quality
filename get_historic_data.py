@@ -41,7 +41,7 @@ def main ():
 	if (args.sensor_ids):
 		sensor_ids = args.sensor_ids
 	else:
-		sensor_ids = ["5331", "7789", "8554", "8733"]
+		sensor_ids =  ['22068',"5331", "7789", "8554", "8733"]
 	print ('Using sensor ids: ' + ', '.join(sensor_ids))
 
 	for sid in sensor_ids:

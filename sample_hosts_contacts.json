@@ -1,0 +1,12 @@
+{
+    "devices": [
+        {
+            "id": 12345,
+            "contact_email": "abc@example.com"
+        },
+        {
+            "id": 678910,
+            "contact_email": "xyz@example2.com"
+        }
+    ]
+}

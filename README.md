@@ -1,6 +1,21 @@
 # abdn_air_quality
 Analysis of Aberdeen Air Quality sensor data
 
+## Monitoring of sensors in a geographic area
+We've added [Is_it_Still_Up.py](Is_it_still_up.py) which is designed to be run as a cron job. 
+
+It monitors the Luftdaten API on a, say, 30 minute interval. 
+
+It compares the sensors found with a [stored list](last_seen.json) (you'll want to create your own). 
+
+If a new sensor is found it adds it to the list and notes the time it was first spotted. We also send a Tweet from our [AirAberdeen](https://twitter.com/AirAberdeen) account saying that a new one has been spotted. We'll add Slack integration soon too. 
+
+If an previously known one is spotted, its last seen time is updated. 
+
+If a sensor that was previously know has disappeared we email the host asking them to check it, taking their details from our hosts_contacts.json file. See [sample_hosts_contacts.json](sample_hosts_contacts.json) You'll want your own of those too. We need to improve this a little to make sure that the message is sent once - not repeatedly. We also will post a message to Slack. 
+
+TODO - below here needs tidying. Use with caution.
+
 ## Introduction 
 This project aims to analyse and visualise the data generated from [the project](https://wiki.57north.org.uk/index.php/Projects:Air_Quality_Monitor) led by the 57 North hacklab to help citizens deploy their own air quality sensors. 
 
