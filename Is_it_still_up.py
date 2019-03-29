@@ -1,7 +1,7 @@
 ## work in progress
 
 import requests, json, datetime
-import smtplib, ssl
+import smtplib, ssl, tweepy
 
 
 def get_current_datetime():
@@ -95,8 +95,8 @@ def update_stored(unchanged, new_found, ex_dic, dat_tim):
     for newbie in new_found:
         new_dict = dict()
         new_dict['id'] = newbie
-        new_dict['first_seen'] = str(right_now)
-        new_dict['last_seen'] = str(right_now)
+        new_dict['first_seen'] = str(dat_tim)
+        new_dict['last_seen'] = str(dat_tim)
         ex_dic['devices'].append(new_dict)
     if len(new_found) > 0:
         send_tweet(new_found)
@@ -142,26 +142,27 @@ def send_alerts_if_down(in_list):
 
     for sens in in_list:
         receiver_email = lookup_host(sens)  # get recipient address
-        sensor_id = str(sens)
-        # Todo add last_seen date_time
+        if receiver_email != "unknown":
+            sensor_id = str(sens)
+            # Todo add last_seen date_time
 
-        message = f"""\
-        Subject: It looks like your Air Quality sensor {sensor_id} is offline
+            message = f"""\
+            Subject: It looks like your Air Quality sensor {sensor_id} is offline
+    
+            TEST EMAIL PLEASE IGNORE
+    
+            Our automated test has detected that your AQ device {sensor_id} has gone offline. It was last seen more than an hour ago.
+    
+            See http://deutschland.maps.luftdaten.info/#10/57.1568/-1.9007 
+    
+            Please check if it needs rebooted, or if it has a power or wifi problem.
+    
+            The Aberdeen AQ team. """
 
-        TEST EMAIL PLEASE IGNORE
-
-        Our automated test has detected that your AQ device {sensor_id} has gone offline. It was last seen more than an hour ago.
-
-        See http://deutschland.maps.luftdaten.info/#10/57.1568/-1.9007 
-
-        Please check if it needs rebooted, or if it has a power or wifi problem.
-
-        The Aberdeen AQ team. """
-
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-            server.login(sender_email, password)
-            server.sendmail(sender_email, receiver_email, message)
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, message)
 
 
 def main():
