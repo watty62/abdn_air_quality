@@ -24,7 +24,7 @@ def main ():
 		start_date = args.start_date
 	else:
 		#start_date = time.strftime(str(int("%Y")-1 + "-%m-%d")) not working
-		start_date = '2017-10-01' 
+		start_date = '2019-03-03' 
 		print ('INFO: using default start date, ' + start_date)
 	if (args.end_date):
 		end_date = args.end_date
@@ -41,7 +41,8 @@ def main ():
 	if (args.sensor_ids):
 		sensor_ids = args.sensor_ids
 	else:
-		sensor_ids =  ['22068',"5331", "7789", "8554", "8733"]
+		sensor_ids =  ["22549","22597","22612","22618","22691","22879","22885","23007","23628","24543","25095","25555"]
+		#sensor_ids =  ["5331", "5332","7789","7790","8554", "8555", "8733", "15092", "15093", "15093", "15462", "15463", "16422", "16423","17079","17080","22068","22449", "22450","22480", "22481", "22481","22523", "22524","22549", "22550","22597", "22598","22612", "22613","22618", "22619","22691", "22692","22879", "22880","22885", "22886","23007", "23008","23628", "23629"]
 	print ('Using sensor ids: ' + ', '.join(sensor_ids))
 
 	for sid in sensor_ids:
