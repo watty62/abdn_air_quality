@@ -29,7 +29,8 @@ def tidy_values(our_list):
                 'value': float(sensordata['value']),
                 'timestamp': sensor['timestamp'],
                 'id': sensor['id'],
-                'sensor_type': sensor['sensor']['sensor_type']}
+                'sensor_type': sensor['sensor']['sensor_type'],
+                'sensor_id' : str(sensor['sensor']['id'])}
     return (new_dict)
 
 
