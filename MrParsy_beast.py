@@ -7,13 +7,13 @@ sensorvalues= ['P1', 'durP1', 'ratioP1', 'P2', 'durP2', 'ratioP2','humidity', 't
 
 def main ():
 	format = "pretty"
-	dname = './data/lil_dump/'
+	dname = './data/big_dump/'
 	input_directory = dname
 	if ((input_directory[-1:] != '\\') & (input_directory[-1:] != '/')):
 		input_directory = input_directory + "\\"
 	file_list = glob.iglob(input_directory +'*.csv')
 	for input_file in file_list:
-		print ("working on next file...")
+		print ("working on next file...", input_file)
 		output_file = dname
 		read_csv(input_file, output_file, format)
 
@@ -26,6 +26,8 @@ def read_csv(file, json_file, format):
 		for row in dictionary:
 			csv_rows.extend([{title[i]:row[title[i]] for i in range(len(title))}])
 		tidy_dict = tidy_values(csv_rows)
+		#pp = pprint.PrettyPrinter(indent=1)
+		#pp.pprint(tidy_dict)
 		write_json(tidy_dict, json_file, format)	
 
 def write_json(data, json_file, format):
@@ -34,9 +36,11 @@ def write_json(data, json_file, format):
 	if (os.path.isfile(json_file + location_id + '.json')):
 		with open(json_file + location_id + '.json', "r") as f:
 			d = json.load(f)
-			for option in sensorvalues:
-				d[location_id][option].update(data[location_id][option])
-			d[location_id]['location'].update(data[location_id]['location'])
+			for timestamp in data[location_id]['readings']:
+				if (str(timestamp) in d[location_id]['readings']):
+					d[location_id]['readings'][str(timestamp)].update(data[location_id]['readings'][timestamp])
+				else:
+					d[location_id]['readings'].update({str(timestamp):data[location_id]['readings'][timestamp]}) 
 		with open(json_file + location_id + '.json', "w") as f:
 			if format == "pretty":
 				f.write(json.dumps(d, sort_keys=False, indent=4,))
@@ -56,31 +60,39 @@ def tidy_values(our_list):
 	#organises ourlist as a dictionary of dictionaries follows:
 	new_dict = {}
 	location_id = str(our_list[0]['location'])
+	reading = our_list[0]
 	if (new_dict.get(location_id, None)==None):
 			new_dict[location_id] = {}
-			new_dict[location_id]['location'] = {}
-			for option in sensorvalues:
-				new_dict[location_id][option] = {}
-	
-	for reading in our_list:
-		timestamp = int((parser.parse(reading['timestamp']) - datetime(1970, 1, 1, tzinfo=timezone.utc)).total_seconds())
-		new_dict[location_id]['location'].update({
-			timestamp: {
+			new_dict[location_id]['info'] = {
 				'latitude':reading['lat'],
 				'longitude':reading['lon'],
-				'timestamp' :reading['timestamp']
+				'location_id':location_id
 				}
-			}) 
+			new_dict[location_id]['readings'] = {}
+			for option in sensorvalues:
+				if (option in reading):
+					if (reading[option]):
+						new_dict[location_id]['info'].update({
+							option: {
+								reading['sensor_type']:reading['sensor_id'],
+								}
+							})
+	
+	for reading in our_list:
+		reading_ts = reading['timestamp']
+		if reading_ts.find('+')<0:
+			#adds timezone if none given.
+			#this is required for timestamp calculation below
+			reading_ts = reading_ts + '+00:00'
+			reading_ts = parser.parse(reading_ts)
+		timestamp = int((reading_ts - datetime(1970, 1, 1, tzinfo=timezone.utc)).total_seconds())
+		#timestamp = timestamp // 60 * 60 #round to nearest minute
+		new_dict[location_id]['readings'][timestamp] = {}
 		for option in sensorvalues:
 			if (option in reading):
 				if (reading[option]):
-					new_dict[location_id][option].update({
-						timestamp: {
-							'value' : float(reading[option]),
-							'id':reading['sensor_id'],
-							'sensor_type' : reading['sensor_type'],
-							'timestamp' :reading['timestamp']
-							}
+					new_dict[location_id]['readings'][timestamp].update({
+						option : float(reading[option])
 						})
 	return(new_dict)
 main()
