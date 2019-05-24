@@ -28,7 +28,10 @@ def read_csv(file, json_file, format):
 		tidy_dict = tidy_values(csv_rows)
 		#pp = pprint.PrettyPrinter(indent=1)
 		#pp.pprint(tidy_dict)
-		write_json(tidy_dict, json_file, format)	
+	write_json(tidy_dict, json_file, format)
+	newfile = file.replace("./data/big_dump","./data/big_dump/done")
+	print (file, newfile)
+	os.rename(file, newfile)
 
 def write_json(data, json_file, format):
 	location_id = list(data.keys())[0]
@@ -36,14 +39,18 @@ def write_json(data, json_file, format):
 	if (os.path.isfile(json_file + location_id + '.json')):
 		with open(json_file + location_id + '.json', "r") as f:
 			d = json.load(f)
+			d[location_id]['info'].update(
+				data[location_id]['info']
+				)
 			for timestamp in data[location_id]['readings']:
 				if (str(timestamp) in d[location_id]['readings']):
 					d[location_id]['readings'][str(timestamp)].update(data[location_id]['readings'][timestamp])
 				else:
 					d[location_id]['readings'].update({str(timestamp):data[location_id]['readings'][timestamp]}) 
+		
 		with open(json_file + location_id + '.json', "w") as f:
 			if format == "pretty":
-				f.write(json.dumps(d, sort_keys=False, indent=4,))
+				f.write(json.dumps(d, sort_keys=True, indent=4))
 			else:
 				f.write(json.dumps(d))
 			print(json_file + location_id + '.json' + " - updated")		
@@ -51,7 +58,7 @@ def write_json(data, json_file, format):
 		with open(json_file + location_id + '.json', "w") as f:
 			d[location_id] = data[location_id]
 			if format == "pretty":
-				f.write(json.dumps(d, sort_keys=False, indent=4,))
+				f.write(json.dumps(d, sort_keys=True, indent=4))
 			else:
 				f.write(json.dumps(d))
 			print(json_file + location_id + '.json' + " - created")
@@ -86,7 +93,7 @@ def tidy_values(our_list):
 			reading_ts = reading_ts + '+00:00'
 			reading_ts = parser.parse(reading_ts)
 		timestamp = int((reading_ts - datetime(1970, 1, 1, tzinfo=timezone.utc)).total_seconds())
-		#timestamp = timestamp // 60 * 60 #round to nearest minute
+		timestamp = timestamp // 360 * 360 #round to nearest minute
 		new_dict[location_id]['readings'][timestamp] = {}
 		for option in sensorvalues:
 			if (option in reading):
