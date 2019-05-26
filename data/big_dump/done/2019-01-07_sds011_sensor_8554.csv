@@ -1,0 +1,2 @@
+sensor_id;sensor_type;location;lat;lon;timestamp;P1;durP1;ratioP1;P2;durP2;ratioP2
+8554;SDS011;4315;57.146;-2.114;2019-01-07T11:35:25;11.87;;;3.00;;
