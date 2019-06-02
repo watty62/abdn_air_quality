@@ -26,7 +26,7 @@ def api_filter():
     end_date = parser.parse(end_date)
     end_date = int((end_date - datetime(1970, 1, 1)).total_seconds())
     
-    results = {location_id:{'info':{}, 'readings':{}}}
+    results = {location_id:{'info':{}, 'readings':{}, 'error':{}}}
     #check if sensor data exists on server
     if (os.path.isfile(json_file + location_id + '.json')):
         #open json file
@@ -46,7 +46,8 @@ def api_filter():
             for t in all_time:
                 if (t > start_date) and (t < end_date):
                     results[location_id]['readings'][str(t)] = d[location_id]['readings'][str(t)]
-
+    else:
+        results[location_id]['error'] = {'human':"We don't have a sensor by that name round here"}
     #results = "blah"
 
     return jsonify(results)
