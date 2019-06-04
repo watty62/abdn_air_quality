@@ -20,7 +20,6 @@ def getIdFormLocation (lat, lon):
     lon1 = radians(lon1a)
     location_id = "3121"
     file_list = glob.iglob(json_file +'*.json')
-    print (file_list)
     for input_file in file_list:
         with open(input_file, "r") as f:
             d = json.load(f)
