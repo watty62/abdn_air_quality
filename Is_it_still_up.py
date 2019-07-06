@@ -149,7 +149,7 @@ def send_alerts_if_down(in_list):
             message = f"""\
             Subject: It looks like your Air Quality sensor {sensor_id} is offline
     
-            TEST EMAIL PLEASE IGNORE
+            THIS IS AN AUTOMATED EMAIL
     
             Our automated test has detected that your AQ device {sensor_id} has gone offline. It was last seen more than an hour ago.
     

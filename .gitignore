@@ -1,2 +1,4 @@
 .httr-oauth
 credentials.json
+Slack_credentials.json
+slack_test.py
